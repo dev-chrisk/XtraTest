@@ -1,0 +1,1261 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> – Xtrabuff Expo</title>
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+    <style>
+        @font-face {
+            font-family: "Jackerton";
+            src: url("/fonts/Jackerton-Regular.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #2a1651;
+            color: #ffffff;
+            margin: 0;
+            opacity: 0;
+            animation: fadeInBody 0.6s ease-in-out forwards;
+        }
+
+        @keyframes fadeInBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .page-frame {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            background-color: #2a1651;
+        }
+
+        .page-inner {
+            flex: 2;
+            border-radius: 0;
+            background-color: #2a1651;
+            box-shadow: none;
+            padding: 16px 26px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: slideUpFadeIn 0.8s ease-out;
+        }
+
+        @keyframes slideUpFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sponsor-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffdd4a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ffeb3b;
+            transform: translateX(-4px);
+        }
+
+        .hero-section {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 221, 74, 0.3);
+            background-color: rgba(42, 22, 81, 0.6);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .hero-image {
+                height: 500px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-image {
+                height: 600px;
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #2a1651 0%, rgba(42, 22, 81, 0.6) 50%, transparent 100%);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 40px;
+            display: flex;
+            align-items: flex-end;
+            gap: 30px;
+        }
+
+        .hero-logo {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(116, 54, 217, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid rgba(255, 221, 74, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-name {
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 900;
+            color: #ffdd4a;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-tier {
+            font-size: clamp(18px, 2vw, 24px);
+            color: #ffdd4a;
+            font-weight: 700;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .info-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .info-card {
+            background-color: rgba(42, 22, 81, 0.6);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid rgba(255, 221, 74, 0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .info-value {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 900;
+            color: #ffdd4a;
+            margin-bottom: 5px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .content-card {
+            background-color: rgba(42, 22, 81, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 221, 74, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .card-title {
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 900;
+            color: #ffdd4a;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .card-description-long {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        .contact-card {
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffdd4a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #ffeb3b;
+            transform: translateX(4px);
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+        }
+
+        .contact-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 5px;
+        }
+
+        .contact-email {
+            color: #ffdd4a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            word-break: break-all;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: #ffeb3b;
+        }
+
+        .social-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 221, 74, 0.3);
+        }
+
+        .social-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 15px;
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .social-button {
+            padding: 10px 20px;
+            background-color: rgba(116, 54, 217, 0.2);
+            border: 2px solid rgba(255, 221, 74, 0.3);
+            border-radius: 8px;
+            color: #ffdd4a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .social-button:hover {
+            background-color: rgba(116, 54, 217, 0.4);
+            border-color: #ffdd4a;
+            transform: translateY(-2px);
+        }
+
+        .features-section {
+            background-color: rgba(42, 22, 81, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 221, 74, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out 1s backwards;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(255, 221, 74, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .feature-icon svg {
+            width: 14px;
+            height: 14px;
+            color: #ffdd4a;
+        }
+
+        .feature-text {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        .partnership-section {
+            background-color: rgba(42, 22, 81, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 221, 74, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out 1.2s backwards;
+        }
+
+        .partnership-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .partnership-text-small {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(42, 22, 81, 0.8) 0%, rgba(116, 54, 217, 0.2) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 221, 74, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 1.4s backwards;
+        }
+
+        .cta-title {
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 900;
+            color: #ffdd4a;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .cta-button {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: "Jackerton", system-ui, sans-serif;
+        }
+
+        .cta-button-primary {
+            background: linear-gradient(135deg, #ffdd4a 0%, #ff8f3c 100%);
+            color: #2a1651;
+            border: none;
+        }
+
+        .cta-button-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 221, 74, 0.5);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: #ffdd4a;
+            border: 2px solid #ffdd4a;
+        }
+
+        .cta-button-secondary:hover {
+            background-color: rgba(255, 221, 74, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            margin-top: 6px;
+            font-size: 11px;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        @media (max-width: 767px) {
+            .top-nav {
+                justify-content: flex-start;
+                gap: 18px;
+                font-size: clamp(20px, 5vw, 32px);
+            }
+            .hero-content {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+            .hero-logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+
+    <script src="/js/app.js" defer></script>
+</head>
+<body>
+    <div class="page-frame">
+        <div class="page-inner">
+            
+<style>
+@font-face {
+    font-family: "Jackerton";
+    src: url("/fonts/Jackerton-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    margin-left: 8px;
+}
+
+.logo-pill a {
+    display: inline-flex;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    position: relative;
+    padding: 4px;
+    margin: -4px;
+    backface-visibility: hidden;
+    will-change: opacity;
+}
+
+.logo-pill a::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.logo-pill a:hover {
+    opacity: 0.9;
+}
+
+.logo-pill img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+.logo-pill a:hover img {
+    filter: brightness(1.1);
+}
+
+.top-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 36px;
+    font-size: 32px;
+    letter-spacing: 0.09em;
+    margin-left: 32px;
+    font-family: "Jackerton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.top-nav a {
+    color: #ffdd4a;
+    text-transform: uppercase;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    font-size: 32px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding: 4px 2px;
+    margin: -4px -2px;
+    backface-visibility: hidden;
+    will-change: color, text-shadow;
+}
+
+.top-nav a::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    right: -2px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.top-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffdd4a;
+    transition: width 0.3s ease;
+}
+
+.top-nav a:hover {
+    color: #ffeb3b;
+    text-shadow: 0 5px 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 221, 74, 0.5);
+}
+
+.top-nav a:hover::after {
+    width: 100%;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-right-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 10px;
+    border-radius: 999px;
+    background-color: #8b6fc7;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color, box-shadow;
+}
+
+.top-right-panel::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+}
+
+.top-right-panel:hover {
+    background-color: #9b7fd7;
+    box-shadow: 0 4px 12px rgba(139, 111, 199, 0.4);
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #2b233f;
+    border-radius: 999px;
+    padding: 4px 12px;
+    border: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color;
+}
+
+.toggle-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+}
+
+.toggle-wrapper:hover {
+    background-color: #352a4f;
+}
+
+.toggle-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background-color: #c39bff;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.toggle-wrapper:hover .toggle-circle {
+    background-color: #d4b3ff;
+}
+
+.toggle-wrapper span {
+    color: #ffdd4a;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-family: "Jackerton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.flag-row {
+    display: flex;
+    gap: 6px;
+}
+
+.flag {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: box-shadow;
+}
+
+.flag::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.flag:hover {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.flag-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 999px;
+    transition: filter 0.3s ease;
+}
+
+.flag:hover .flag-icon {
+    filter: brightness(1.1);
+}
+
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    min-width: 220px;
+    background-color: rgba(42, 22, 81, 0.98);
+    border: 1px solid rgba(116, 54, 217, 0.4);
+    border-radius: 8px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    backface-visibility: hidden;
+    will-change: opacity, visibility;
+}
+
+.nav-item-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: none;
+    text-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    letter-spacing: normal;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color, color;
+}
+
+.nav-dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.nav-dropdown-menu a:hover {
+    background-color: rgba(116, 54, 217, 0.2);
+    color: #00f496;
+}
+
+.nav-dropdown-link {
+    font-family: "Montserrat", sans-serif;
+}
+
+.tip-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background-color: #ff8f3c;
+    color: #2a1651;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+</style>
+
+<header class="top-bar">
+    <div class="logo-pill">
+        <a href="/">
+            <img src="/assets/Xtrabuff_XBE.png" alt="Xtrabuff XBE Logo">
+        </a>
+    </div>
+
+    <nav class="top-nav">
+        <!-- Home Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/" class="nav-link">Home</a>
+            <div class="nav-dropdown-menu">
+                <a href="/aboutus.html" class="nav-dropdown-link">About Us</a>
+                <a href="/whyus.html" class="nav-dropdown-link">Why Us? <span class="tip-badge">very hot</span></a>
+            </div>
+        </div>
+
+        <!-- Visitors Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/visitors.html" class="nav-link">Visitors</a>
+            <div class="nav-dropdown-menu">
+                <a href="/tickets.html" class="nav-dropdown-link">Tickets</a>
+                <a href="/travel.html" class="nav-dropdown-link">Travel & Accommodation</a>
+                <a href="/gamification.html" class="nav-dropdown-link">Gamified Experience <span class="tip-badge">hot</span></a>
+                <a href="/faq.html" class="nav-dropdown-link">FAQ</a>
+            </div>
+        </div>
+
+        <!-- Exhibitors Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/exhibitors.html" class="nav-link">Exhibitors</a>
+            <div class="nav-dropdown-menu">
+                <a href="/whyexhibit.html" class="nav-dropdown-link">Why Exhibit?</a>
+                <a href="/booths.html" class="nav-dropdown-link">Booth Packages</a>
+                <a href="/exibitorprocess.html" class="nav-dropdown-link">Application Process <span class="tip-badge">hot</span></a>
+                <a href="/exhibitorfaq.html" class="nav-dropdown-link">Exhibitor FAQ</a>
+            </div>
+        </div>
+
+        <!-- Program Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/program.html" class="nav-link">Program</a>
+            <div class="nav-dropdown-menu">
+                <a href="/schedule.html" class="nav-dropdown-link">Schedule Overview</a>
+                <a href="/workshops.html" class="nav-dropdown-link">Panels & Workshops</a>
+                <a href="/pitchs.html" class="nav-dropdown-link">Pitch Events</a>
+                <a href="/awards.html" class="nav-dropdown-link">Awards</a>
+                <a href="/party.html" class="nav-dropdown-link">Afterparty</a>
+            </div>
+        </div>
+
+        <!-- Partners Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/partners.html" class="nav-link">Partners</a>
+            <div class="nav-dropdown-menu">
+                <a href="/howtosponsorship.html" class="nav-dropdown-link">Sponsorship Opportunities <span class="tip-badge">hot</span></a>
+                <a href="/partnershippackages.html" class="nav-dropdown-link">Partnership Packages</a>
+                <a href="/govnmore.html" class="nav-dropdown-link">Government & Associations</a>
+                <a href="/press.html" class="nav-dropdown-link">Press & Media</a>
+            </div>
+        </div>
+
+        <!-- More Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="#" class="nav-link">More</a>
+            <div class="nav-dropdown-menu">
+                <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="nav-dropdown-link">Discord <span class="tip-badge">hot</span></a>
+                <a href="/updates.html" class="nav-dropdown-link">News & Updates</a>
+                <a href="/contact.html" class="nav-dropdown-link">Contact</a>
+                <a href="/legal.html" class="nav-dropdown-link">Imprint / Legal</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="top-right">
+        <div class="top-right-panel">
+            <div class="toggle-wrapper">
+                <div class="toggle-circle"></div>
+                <span>Dark Mode</span>
+            </div>
+            <div class="flag-row">
+                <div class="flag">
+                    <img src="/assets/german-icon.png" alt="Deutsch" class="flag-icon">
+                </div>
+                <div class="flag">
+                    <img src="/assets/english-icon.png" alt="English" class="flag-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+            <main>
+                <div class="sponsor-content">
+                    <a href="/partners.php" class="back-link">
+                        ← Zurück zu Partners
+                    </a>
+
+                    <!-- Hero Section with Large Image -->
+                    <div class="hero-section">
+                        <img src="<?php echo htmlspecialchars($sponsor['hero_image'] ?? '/assets/xtrabuff-expo-big-banner2.png'); ?>" 
+                             alt=" Hero" 
+                             class="hero-image">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <div class="hero-logo">
+                                <img src="" 
+                                     alt=" Logo">
+                            </div>
+                            <div class="hero-text">
+                                <h1 class="hero-name"></h1>
+                                
+                                    <p class="hero-tier">⭐ Beste Sponsoren</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Info Cards -->
+                    <div class="info-cards">
+                        
+                        <div class="info-card">
+                            <div class="info-value"></div>
+                            <div class="info-label">Gegründet</div>
+                        </div>
+                        
+                        
+                        <div class="info-card">
+                            <div class="info-value"></div>
+                            <div class="info-label">Mitarbeiter</div>
+                        </div>
+                        
+                        
+                        <div class="info-card">
+                            <div class="info-value" style="font-size: clamp(16px, 2vw, 20px);"></div>
+                            <div class="info-label">Standort</div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-value">2026</div>
+                            <div class="info-label">Partner seit</div>
+                        </div>
+                    </div>
+
+                    <!-- Main Content Grid -->
+                    <div class="content-grid">
+                        <!-- About Section -->
+                        <div class="content-card">
+                            <h2 class="card-title">Über </h2>
+                            <p class="card-description">
+                                
+                            </p>
+                            
+                            <p class="card-description-long">
+                                
+                            </p>
+                            
+                        </div>
+
+                        <!-- Contact & Social Section -->
+                        <div class="content-card contact-card">
+                            <h2 class="card-title">Kontakt & Links</h2>
+                            
+                            
+                            <a href="" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="contact-link">
+                                Website besuchen →
+                            </a>
+                            
+
+                            
+                            <div class="contact-item">
+                                <div class="contact-label">E-Mail</div>
+                                <a href="mailto:" 
+                                   class="contact-email">
+                                    
+                                </a>
+                            </div>
+                            
+
+                            
+                            <div class="social-section">
+                                <div class="social-label">Social Media</div>
+                                <div class="social-buttons">
+                                    
+                                    <a href="" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer" 
+                                       class="social-button">
+                                        Twitter
+                                    </a>
+                                    
+                                    
+                                    <a href="" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer" 
+                                       class="social-button">
+                                        Instagram
+                                    </a>
+                                    
+                                    
+                                    <a href="" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer" 
+                                       class="social-button">
+                                        YouTube
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Partnership Features -->
+                    
+                    <div class="features-section">
+                        <h2 class="card-title">Partnerschafts-Features</h2>
+                        <div class="features-grid">
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <p class="feature-text"></p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <!-- Partnership Details -->
+                    <div class="partnership-section">
+                        <h2 class="card-title">Unsere Partnerschaft</h2>
+                        <p class="partnership-text">
+                             ist ein wichtiger Partner der Xtrabuff Expo und unterstützt uns dabei, 
+                            ein unvergessliches Gaming-Erlebnis für alle Teilnehmer zu schaffen. Durch diese Partnerschaft 
+                            können wir innovative Technologien, exklusive Inhalte und einzigartige Erlebnisse anbieten, 
+                            die die Expo zu etwas Besonderem machen.
+                        </p>
+                        <p class="partnership-text-small">
+                            Gemeinsam setzen wir uns für die Gaming-Community ein und schaffen Räume, in denen Kreativität, 
+                            Innovation und Leidenschaft zusammenkommen. Die Unterstützung von  ermöglicht 
+                            es uns, die Expo kontinuierlich zu verbessern und neue, aufregende Features anzubieten.
+                        </p>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="cta-section">
+                        <h2 class="cta-title">Interesse an einer Partnerschaft?</h2>
+                        <p class="cta-text">
+                            Werde Teil der Xtrabuff Expo als Partner oder Sponsor. Kontaktiere uns für weitere Informationen 
+                            über Partnerschafts-Möglichkeiten und Sponsoring-Pakete.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="/partners.php" class="cta-button cta-button-primary">
+                                Zur Partnerseite
+                            </a>
+                            <a href="mailto:partners@xtrabuff-expo.com" class="cta-button cta-button-secondary">
+                                Kontakt aufnehmen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+    
+<footer class="border-t border-purple-neon/30 bg-purple-dark/80">
+    <div class="mx-auto max-w-6xl px-3 py-8 md:px-4 md:py-12">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <!-- About Section -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Über Xtrabuff</h3>
+                <p class="text-xs text-white/70 md:text-sm">
+                    Die größte Gaming- und Tech-Expo in Deutschland. Verbinde dich mit der Community, entdecke Innovationen und erlebe die Zukunft des Gamings.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Quick Links</h3>
+                <ul class="space-y-2 text-xs md:text-sm">
+                    <li>
+                        <a href="/" class="text-white/70 transition-colors hover:text-cyan-neon">Home</a>
+                    </li>
+                    <li>
+                        <a href="/updates.html" class="text-white/70 transition-colors hover:text-cyan-neon">Updates</a>
+                    </li>
+                    <li>
+                        <a href="/tickets.html" class="text-white/70 transition-colors hover:text-cyan-neon">Tickets</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus.html" class="text-white/70 transition-colors hover:text-cyan-neon">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/partners.html" class="text-white/70 transition-colors hover:text-cyan-neon">Partners</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Resources</h3>
+                <ul class="space-y-2 text-xs md:text-sm">
+                    <li>
+                        <a href="/exhibitors.html" class="text-white/70 transition-colors hover:text-cyan-neon">Exhibitors</a>
+                    </li>
+                    <li>
+                        <a href="/legal.html" class="text-white/70 transition-colors hover:text-cyan-neon">Legal / Imprint</a>
+                    </li>
+                    <li>
+                        <a href="/faq.html" class="text-white/70 transition-colors hover:text-cyan-neon">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="/contact.html" class="text-white/70 transition-colors hover:text-cyan-neon">Contact</a>
+                    </li>
+                    <li>
+                        <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="text-white/70 transition-colors hover:text-cyan-neon">Discord</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Media & Contact -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Connect</h3>
+                <div class="flex gap-3">
+                    <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Discord">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Twitter">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Instagram">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-xs text-white/60">
+                    Folge uns für die neuesten Updates und News!
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-8 border-t border-purple-neon/20 pt-6">
+            <div class="flex flex-col items-center justify-between gap-3 text-[11px] text-white/70 md:flex-row md:text-xs">
+                <p>©  Xtrabuff. Alle Rechte vorbehalten.</p>
+                <div class="flex gap-4">
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">Impressum</a>
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">Datenschutz</a>
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">AGB</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,1257 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Overview – Xtrabuff Expo</title>
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: "Jackerton";
+            src: url("/fonts/Jackerton-Regular.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #2a1651;
+            color: #ffffff;
+            margin: 0;
+            opacity: 0;
+            animation: fadeInBody 0.6s ease-in-out forwards;
+        }
+
+        @keyframes fadeInBody {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .page-frame {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            background-color: #2a1651;
+        }
+
+        .page-inner {
+            flex: 2;
+            border-radius: 0;
+            background-color: #2a1651;
+            box-shadow: none;
+            padding: 16px 26px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: slideUpFadeIn 0.8s ease-out;
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, rgba(116, 54, 217, 0.2) 0%, rgba(42, 22, 81, 0.4) 100%);
+            border: 1px solid rgba(116, 54, 217, 0.3);
+            border-radius: 16px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-card h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            background: linear-gradient(135deg, #00f496 0%, #7436d9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-card p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .content-section {
+            background: rgba(42, 22, 81, 0.3);
+            border: 1px solid rgba(116, 54, 217, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-container {
+            background: rgba(42, 22, 81, 0.4);
+            border: 2px solid rgba(116, 54, 217, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .calendar-header h2 {
+            font-family: "Jackerton", sans-serif;
+            font-size: 2rem;
+            color: #00f496;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .calendar-nav-btn {
+            background: rgba(116, 54, 217, 0.3);
+            border: 1px solid rgba(116, 54, 217, 0.5);
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: #ffffff;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-nav-btn:hover {
+            background: rgba(116, 54, 217, 0.5);
+            border-color: #00f496;
+        }
+
+        .calendar-month-year {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            min-height: 400px;
+        }
+
+        .calendar-day-header {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 12px 0;
+            text-transform: uppercase;
+        }
+
+        .calendar-day {
+            min-height: 60px;
+            background: rgba(42, 22, 81, 0.5);
+            border: 1px solid rgba(116, 54, 217, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .calendar-day:hover {
+            border-color: #00f496;
+            background: rgba(0, 244, 150, 0.1);
+        }
+
+        .calendar-day.other-month {
+            opacity: 0.3;
+        }
+
+        .calendar-day.today {
+            background: rgba(0, 244, 150, 0.2);
+            border-color: #00f496;
+            border-width: 2px;
+        }
+
+        .calendar-day.has-events {
+            border-color: #7436d9;
+        }
+
+        .calendar-day-number {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .calendar-day.today .calendar-day-number {
+            font-weight: 700;
+            color: #00f496;
+        }
+
+        .event-badge {
+            width: 6px;
+            height: 6px;
+            background: #00f496;
+            border-radius: 50%;
+            margin: 2px;
+        }
+
+        .event-badge.workshop {
+            background: #7436d9;
+        }
+
+        .event-badge.keynote {
+            background: #ff8f3c;
+        }
+
+        .event-badge.networking {
+            background: #f4d000;
+        }
+
+        .timeline-container {
+            background: rgba(42, 22, 81, 0.4);
+            border: 2px solid rgba(116, 54, 217, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-container h2 {
+            font-family: "Jackerton", sans-serif;
+            font-size: 2rem;
+            color: #00f496;
+            margin: 0 0 30px 0;
+            text-transform: uppercase;
+        }
+
+        .timeline-day {
+            margin-bottom: 40px;
+        }
+
+        .timeline-day:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-day-header {
+            font-family: "Jackerton", sans-serif;
+            font-size: 1.5rem;
+            color: #00f496;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(116, 54, 217, 0.3);
+        }
+
+        .timeline-events {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-events::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #00f496, #7436d9);
+        }
+
+        .timeline-event {
+            background: rgba(42, 22, 81, 0.6);
+            border: 1px solid rgba(116, 54, 217, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-event:hover {
+            border-color: #00f496;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 244, 150, 0.2);
+        }
+
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            background: #00f496;
+            border-radius: 50%;
+            border: 2px solid #2a1651;
+        }
+
+        .timeline-event.workshop::before {
+            background: #7436d9;
+        }
+
+        .timeline-event.keynote::before {
+            background: #ff8f3c;
+        }
+
+        .timeline-event.networking::before {
+            background: #f4d000;
+        }
+
+        .event-time {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #00f496;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            font-family: "Jackerton", sans-serif;
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .event-description {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .event-location {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .event-type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .event-type-badge.workshop {
+            background: rgba(116, 54, 217, 0.3);
+            color: #7436d9;
+        }
+
+        .event-type-badge.keynote {
+            background: rgba(255, 143, 60, 0.3);
+            color: #ff8f3c;
+        }
+
+        .event-type-badge.networking {
+            background: rgba(244, 208, 0, 0.3);
+            color: #f4d000;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .calendar-month-year {
+                min-width: auto;
+            }
+
+            .calendar-day {
+                padding: 4px;
+            }
+
+            .calendar-day-number {
+                font-size: 0.75rem;
+            }
+
+            .timeline-events {
+                padding-left: 20px;
+            }
+
+            .timeline-event::before {
+                left: -28px;
+            }
+        }
+    </style>
+
+    <script src="/js/app.js" defer></script>
+    <script>
+        // Helper function to get date string for current/next month
+        function getDateString(year, month, day) {
+            const date = new Date(year, month, day);
+            return date.toISOString().split('T')[0];
+        }
+
+        // Get current date and next month for events
+        const now = new Date();
+        const eventYear = now.getFullYear();
+        const eventMonth = now.getMonth();
+        const nextMonth = eventMonth === 11 ? 0 : eventMonth + 1;
+        const nextYear = eventMonth === 11 ? eventYear + 1 : eventYear;
+
+        // Sample events data - using current/next month dates
+        const events = [
+            // Current month events
+            { date: getDateString(eventYear, eventMonth, 5), time: '09:00', title: 'Eröffnung & Welcome', description: 'Offizielle Eröffnung der Xtrabuff Expo mit Begrüßung und Keynote von bekannten Gaming-Persönlichkeiten', location: 'Hauptbühne', type: 'keynote' },
+            { date: getDateString(eventYear, eventMonth, 5), time: '10:30', title: 'Gaming Trends 2024', description: 'Diskussion über die neuesten Trends in der Gaming-Industrie mit Experten aus der Branche', location: 'Workshop Raum A', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 5), time: '14:00', title: 'Content Creator Meetup', description: 'Networking-Event für Content Creator und Influencer. Tausche dich mit anderen aus!', location: 'Networking Lounge', type: 'networking' },
+            { date: getDateString(eventYear, eventMonth, 5), time: '16:00', title: 'Indie Game Showcase', description: 'Präsentation innovativer Indie-Spiele von aufstrebenden Entwicklern', location: 'Showcase Area', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 5), time: '18:00', title: 'Gaming Tournament Start', description: 'Start des großen Gaming-Turniers mit verschiedenen Disziplinen', location: 'Gaming Arena', type: 'keynote' },
+            
+            { date: getDateString(eventYear, eventMonth, 8), time: '09:30', title: 'Esports Panel', description: 'Diskussion über die Zukunft des Esports mit Profi-Spielern und Team-Managern', location: 'Hauptbühne', type: 'keynote' },
+            { date: getDateString(eventYear, eventMonth, 8), time: '11:00', title: 'Streaming Setup Workshop', description: 'Lerne, wie du dein perfektes Streaming-Setup erstellst. Von Hardware bis Software!', location: 'Workshop Raum B', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 8), time: '13:30', title: 'VR/AR Gaming Experience', description: 'Teste die neuesten VR- und AR-Gaming-Technologien', location: 'VR Zone', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 8), time: '15:00', title: 'Creator Networking', description: 'Austausch und Networking mit anderen Creators. Bring deine Visitenkarten mit!', location: 'Networking Lounge', type: 'networking' },
+            { date: getDateString(eventYear, eventMonth, 8), time: '17:00', title: 'Game Development Talk', description: 'Erfahre mehr über den Prozess der Spieleentwicklung', location: 'Workshop Raum A', type: 'workshop' },
+            
+            { date: getDateString(eventYear, eventMonth, 12), time: '10:00', title: 'Pitch Event: Indie Games', description: 'Indie-Entwickler präsentieren ihre Projekte vor einer Jury', location: 'Hauptbühne', type: 'keynote' },
+            { date: getDateString(eventYear, eventMonth, 12), time: '12:00', title: 'Community Meetup', description: 'Treffe andere Mitglieder der Gaming-Community', location: 'Networking Lounge', type: 'networking' },
+            { date: getDateString(eventYear, eventMonth, 12), time: '14:00', title: 'Retro Gaming Zone', description: 'Spiele klassische Spiele aus den 80er und 90er Jahren', location: 'Retro Zone', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 12), time: '16:30', title: 'Cosplay Contest', description: 'Bewundere kreative Cosplay-Kreationen und stimme für deinen Favoriten', location: 'Hauptbühne', type: 'keynote' },
+            
+            { date: getDateString(eventYear, eventMonth, 15), time: '09:00', title: 'Morning Yoga für Gamer', description: 'Starte entspannt in den Tag mit Gaming-Yoga', location: 'Wellness Area', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 15), time: '11:00', title: 'Speedrunning Panel', description: 'Lerne von den besten Speedrunnern der Szene', location: 'Workshop Raum B', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 15), time: '13:00', title: 'Lunch Networking', description: 'Informelles Networking während des Mittagessens', location: 'Networking Lounge', type: 'networking' },
+            { date: getDateString(eventYear, eventMonth, 15), time: '15:00', title: 'Gaming Hardware Showcase', description: 'Entdecke die neueste Gaming-Hardware von führenden Herstellern', location: 'Expo Hall', type: 'workshop' },
+            { date: getDateString(eventYear, eventMonth, 15), time: '19:00', title: 'Gaming Night Party', description: 'Afterparty mit Musik, Drinks und Gaming', location: 'Party Zone', type: 'networking' },
+            
+            { date: getDateString(eventYear, eventMonth, 20), time: '10:00', title: 'Closing Ceremony', description: 'Abschlussveranstaltung mit Awards, Gewinnerbekanntgabe und großer Afterparty', location: 'Hauptbühne', type: 'keynote' },
+            { date: getDateString(eventYear, eventMonth, 20), time: '12:00', title: 'Final Networking', description: 'Letzte Chance zum Networking vor dem Ende der Expo', location: 'Networking Lounge', type: 'networking' },
+            { date: getDateString(eventYear, eventMonth, 20), time: '14:00', title: 'Awards Ceremony', description: 'Verleihung der Awards für beste Spiele, Creator und mehr', location: 'Hauptbühne', type: 'keynote' },
+            { date: getDateString(eventYear, eventMonth, 20), time: '20:00', title: 'Grand Finale Afterparty', description: 'Große Abschlussparty mit DJ, Live-Musik und Überraschungen', location: 'Party Zone', type: 'networking' },
+        ];
+
+        // Initialize calendar to current month
+        const currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        const monthNames = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+        const dayNames = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+
+        function getEventsForDate(date) {
+            const dateStr = date.toISOString().split('T')[0];
+            return events.filter(event => event.date === dateStr);
+        }
+
+        function renderCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthYear = document.getElementById('monthYear');
+            
+            monthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            
+            calendarGrid.innerHTML = '';
+            
+            // Day headers
+            dayNames.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                calendarGrid.appendChild(header);
+            });
+
+            // First day of month
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const startingDayOfWeek = firstDay.getDay();
+            
+            // Days in previous month
+            const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+            for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+                const day = document.createElement('div');
+                day.className = 'calendar-day other-month';
+                day.textContent = daysInPrevMonth - i;
+                calendarGrid.appendChild(day);
+            }
+
+            // Days in current month
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const today = new Date();
+            const isCurrentMonth = today.getMonth() === currentMonth && today.getFullYear() === currentYear;
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const day = document.createElement('div');
+                const date = new Date(currentYear, currentMonth, i);
+                const dayEvents = getEventsForDate(date);
+                const isToday = isCurrentMonth && i === today.getDate();
+
+                day.className = 'calendar-day';
+                if (isToday) day.classList.add('today');
+                if (dayEvents.length > 0) day.classList.add('has-events');
+                
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'calendar-day-number';
+                dayNumber.textContent = i;
+                day.appendChild(dayNumber);
+
+                if (dayEvents.length > 0) {
+                    const badgesContainer = document.createElement('div');
+                    badgesContainer.style.display = 'flex';
+                    badgesContainer.style.flexWrap = 'wrap';
+                    badgesContainer.style.justifyContent = 'center';
+                    dayEvents.forEach(event => {
+                        const badge = document.createElement('div');
+                        badge.className = `event-badge ${event.type}`;
+                        badgesContainer.appendChild(badge);
+                    });
+                    day.appendChild(badgesContainer);
+                }
+
+                day.addEventListener('click', () => {
+                    scrollToDate(date);
+                });
+
+                calendarGrid.appendChild(day);
+            }
+
+            // Days in next month
+            const totalCells = calendarGrid.children.length - 7; // Subtract 7 header cells
+            const remainingCells = 42 - totalCells; // 6 rows * 7 days
+            for (let i = 1; i <= remainingCells; i++) {
+                const day = document.createElement('div');
+                day.className = 'calendar-day other-month';
+                day.textContent = i;
+                calendarGrid.appendChild(day);
+            }
+        }
+
+        function renderTimeline() {
+            const timelineContent = document.getElementById('timelineContent');
+            timelineContent.innerHTML = '';
+
+            // Group events by date
+            const eventsByDate = {};
+            events.forEach(event => {
+                if (!eventsByDate[event.date]) {
+                    eventsByDate[event.date] = [];
+                }
+                eventsByDate[event.date].push(event);
+            });
+
+            // Sort dates
+            const sortedDates = Object.keys(eventsByDate).sort();
+
+            sortedDates.forEach(dateStr => {
+                const date = new Date(dateStr);
+                const dayEvents = eventsByDate[dateStr].sort((a, b) => a.time.localeCompare(b.time));
+
+                const dayContainer = document.createElement('div');
+                dayContainer.className = 'timeline-day';
+                dayContainer.id = `day-${dateStr}`;
+
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'timeline-day-header';
+                dayHeader.textContent = `${date.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}`;
+                dayContainer.appendChild(dayHeader);
+
+                const eventsContainer = document.createElement('div');
+                eventsContainer.className = 'timeline-events';
+
+                dayEvents.forEach(event => {
+                    const eventCard = document.createElement('div');
+                    eventCard.className = `timeline-event ${event.type}`;
+
+                    const time = document.createElement('div');
+                    time.className = 'event-time';
+                    time.textContent = event.time;
+                    eventCard.appendChild(time);
+
+                    const title = document.createElement('div');
+                    title.className = 'event-title';
+                    title.textContent = event.title;
+                    eventCard.appendChild(title);
+
+                    const description = document.createElement('div');
+                    description.className = 'event-description';
+                    description.textContent = event.description;
+                    eventCard.appendChild(description);
+
+                    const location = document.createElement('div');
+                    location.className = 'event-location';
+                    location.innerHTML = `📍 ${event.location}`;
+                    eventCard.appendChild(location);
+
+                    const badge = document.createElement('span');
+                    badge.className = `event-type-badge ${event.type}`;
+                    badge.textContent = event.type;
+                    eventCard.appendChild(badge);
+
+                    eventsContainer.appendChild(eventCard);
+                });
+
+                dayContainer.appendChild(eventsContainer);
+                timelineContent.appendChild(dayContainer);
+            });
+        }
+
+        function scrollToDate(date) {
+            const dateStr = date.toISOString().split('T')[0];
+            const dayElement = document.getElementById(`day-${dateStr}`);
+            if (dayElement) {
+                dayElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                dayElement.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    dayElement.style.animation = '';
+                }, 500);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCalendar();
+            renderTimeline();
+
+            document.getElementById('prevMonth').addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar();
+            });
+
+            document.getElementById('nextMonth').addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar();
+            });
+        });
+    </script>
+    <style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-frame">
+        <div class="page-inner">
+            
+<style>
+@font-face {
+    font-family: "Jackerton";
+    src: url("/fonts/Jackerton-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    margin-left: 8px;
+}
+
+.logo-pill a {
+    display: inline-flex;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    position: relative;
+    padding: 4px;
+    margin: -4px;
+    backface-visibility: hidden;
+    will-change: opacity;
+}
+
+.logo-pill a::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.logo-pill a:hover {
+    opacity: 0.9;
+}
+
+.logo-pill img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+.logo-pill a:hover img {
+    filter: brightness(1.1);
+}
+
+.top-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 36px;
+    font-size: 32px;
+    letter-spacing: 0.09em;
+    margin-left: 32px;
+    font-family: "Jackerton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.top-nav a {
+    color: #ffdd4a;
+    text-transform: uppercase;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    font-size: 32px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding: 4px 2px;
+    margin: -4px -2px;
+    backface-visibility: hidden;
+    will-change: color, text-shadow;
+}
+
+.top-nav a::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    right: -2px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.top-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffdd4a;
+    transition: width 0.3s ease;
+}
+
+.top-nav a:hover {
+    color: #ffeb3b;
+    text-shadow: 0 5px 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 221, 74, 0.5);
+}
+
+.top-nav a:hover::after {
+    width: 100%;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-right-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 10px;
+    border-radius: 999px;
+    background-color: #8b6fc7;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color, box-shadow;
+}
+
+.top-right-panel::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+}
+
+.top-right-panel:hover {
+    background-color: #9b7fd7;
+    box-shadow: 0 4px 12px rgba(139, 111, 199, 0.4);
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #2b233f;
+    border-radius: 999px;
+    padding: 4px 12px;
+    border: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color;
+}
+
+.toggle-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+}
+
+.toggle-wrapper:hover {
+    background-color: #352a4f;
+}
+
+.toggle-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background-color: #c39bff;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.toggle-wrapper:hover .toggle-circle {
+    background-color: #d4b3ff;
+}
+
+.toggle-wrapper span {
+    color: #ffdd4a;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-family: "Jackerton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.flag-row {
+    display: flex;
+    gap: 6px;
+}
+
+.flag {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: box-shadow;
+}
+
+.flag::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.flag:hover {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.flag-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 999px;
+    transition: filter 0.3s ease;
+}
+
+.flag:hover .flag-icon {
+    filter: brightness(1.1);
+}
+
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    min-width: 220px;
+    background-color: rgba(42, 22, 81, 0.98);
+    border: 1px solid rgba(116, 54, 217, 0.4);
+    border-radius: 8px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    backface-visibility: hidden;
+    will-change: opacity, visibility;
+}
+
+.nav-item-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: none;
+    text-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    letter-spacing: normal;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color, color;
+}
+
+.nav-dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.nav-dropdown-menu a:hover {
+    background-color: rgba(116, 54, 217, 0.2);
+    color: #00f496;
+}
+
+.nav-dropdown-link {
+    font-family: "Montserrat", sans-serif;
+}
+
+.tip-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background-color: #ff8f3c;
+    color: #2a1651;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+</style>
+
+<header class="top-bar">
+    <div class="logo-pill">
+        <a href="/">
+            <img src="/assets/Xtrabuff_XBE.png" alt="Xtrabuff XBE Logo">
+        </a>
+    </div>
+
+    <nav class="top-nav">
+        <!-- Home Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/" class="nav-link">Home</a>
+            <div class="nav-dropdown-menu">
+                <a href="/aboutus.html" class="nav-dropdown-link">About Us</a>
+                <a href="/whyus.html" class="nav-dropdown-link">Why Us? <span class="tip-badge">very hot</span></a>
+            </div>
+        </div>
+
+        <!-- Visitors Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/visitors.html" class="nav-link">Visitors</a>
+            <div class="nav-dropdown-menu">
+                <a href="/tickets.html" class="nav-dropdown-link">Tickets</a>
+                <a href="/travel.html" class="nav-dropdown-link">Travel & Accommodation</a>
+                <a href="/gamification.html" class="nav-dropdown-link">Gamified Experience <span class="tip-badge">hot</span></a>
+                <a href="/faq.html" class="nav-dropdown-link">FAQ</a>
+            </div>
+        </div>
+
+        <!-- Exhibitors Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/exhibitors.html" class="nav-link">Exhibitors</a>
+            <div class="nav-dropdown-menu">
+                <a href="/whyexhibit.html" class="nav-dropdown-link">Why Exhibit?</a>
+                <a href="/booths.html" class="nav-dropdown-link">Booth Packages</a>
+                <a href="/exibitorprocess.html" class="nav-dropdown-link">Application Process <span class="tip-badge">hot</span></a>
+                <a href="/exhibitorfaq.html" class="nav-dropdown-link">Exhibitor FAQ</a>
+            </div>
+        </div>
+
+        <!-- Program Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/program.html" class="nav-link">Program</a>
+            <div class="nav-dropdown-menu">
+                <a href="/schedule.html" class="nav-dropdown-link">Schedule Overview</a>
+                <a href="/workshops.html" class="nav-dropdown-link">Panels & Workshops</a>
+                <a href="/pitchs.html" class="nav-dropdown-link">Pitch Events</a>
+                <a href="/awards.html" class="nav-dropdown-link">Awards</a>
+                <a href="/party.html" class="nav-dropdown-link">Afterparty</a>
+            </div>
+        </div>
+
+        <!-- Partners Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/partners.html" class="nav-link">Partners</a>
+            <div class="nav-dropdown-menu">
+                <a href="/howtosponsorship.html" class="nav-dropdown-link">Sponsorship Opportunities <span class="tip-badge">hot</span></a>
+                <a href="/partnershippackages.html" class="nav-dropdown-link">Partnership Packages</a>
+                <a href="/govnmore.html" class="nav-dropdown-link">Government & Associations</a>
+                <a href="/press.html" class="nav-dropdown-link">Press & Media</a>
+            </div>
+        </div>
+
+        <!-- More Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="#" class="nav-link">More</a>
+            <div class="nav-dropdown-menu">
+                <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="nav-dropdown-link">Discord <span class="tip-badge">hot</span></a>
+                <a href="/updates.html" class="nav-dropdown-link">News & Updates</a>
+                <a href="/contact.html" class="nav-dropdown-link">Contact</a>
+                <a href="/legal.html" class="nav-dropdown-link">Imprint / Legal</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="top-right">
+        <div class="top-right-panel">
+            <div class="toggle-wrapper">
+                <div class="toggle-circle"></div>
+                <span>Dark Mode</span>
+            </div>
+            <div class="flag-row">
+                <div class="flag">
+                    <img src="/assets/german-icon.png" alt="Deutsch" class="flag-icon">
+                </div>
+                <div class="flag">
+                    <img src="/assets/english-icon.png" alt="English" class="flag-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+            <main>
+                <div class="hero-card">
+                    <h1>Schedule Overview</h1>
+                    <p>Entdecke das vollständige Programm der Xtrabuff Expo</p>
+                </div>
+
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h2>Kalender</h2>
+                        <div class="calendar-nav">
+                            <button class="calendar-nav-btn" id="prevMonth">←</button>
+                            <div class="calendar-month-year" id="monthYear"></div>
+                            <button class="calendar-nav-btn" id="nextMonth">→</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
+
+                <div class="timeline-container">
+                    <h2>Timeline</h2>
+                    <div id="timelineContent"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+<footer class="border-t border-purple-neon/30 bg-purple-dark/80">
+    <div class="mx-auto max-w-6xl px-3 py-8 md:px-4 md:py-12">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <!-- About Section -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Über Xtrabuff</h3>
+                <p class="text-xs text-white/70 md:text-sm">
+                    Die größte Gaming- und Tech-Expo in Deutschland. Verbinde dich mit der Community, entdecke Innovationen und erlebe die Zukunft des Gamings.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Quick Links</h3>
+                <ul class="space-y-2 text-xs md:text-sm">
+                    <li>
+                        <a href="/" class="text-white/70 transition-colors hover:text-cyan-neon">Home</a>
+                    </li>
+                    <li>
+                        <a href="/updates.html" class="text-white/70 transition-colors hover:text-cyan-neon">Updates</a>
+                    </li>
+                    <li>
+                        <a href="/tickets.html" class="text-white/70 transition-colors hover:text-cyan-neon">Tickets</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus.html" class="text-white/70 transition-colors hover:text-cyan-neon">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/partners.html" class="text-white/70 transition-colors hover:text-cyan-neon">Partners</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Resources</h3>
+                <ul class="space-y-2 text-xs md:text-sm">
+                    <li>
+                        <a href="/exhibitors.html" class="text-white/70 transition-colors hover:text-cyan-neon">Exhibitors</a>
+                    </li>
+                    <li>
+                        <a href="/legal.html" class="text-white/70 transition-colors hover:text-cyan-neon">Legal / Imprint</a>
+                    </li>
+                    <li>
+                        <a href="/faq.html" class="text-white/70 transition-colors hover:text-cyan-neon">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="/contact.html" class="text-white/70 transition-colors hover:text-cyan-neon">Contact</a>
+                    </li>
+                    <li>
+                        <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="text-white/70 transition-colors hover:text-cyan-neon">Discord</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Media & Contact -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Connect</h3>
+                <div class="flex gap-3">
+                    <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Discord">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Twitter">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Instagram">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-xs text-white/60">
+                    Folge uns für die neuesten Updates und News!
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-8 border-t border-purple-neon/20 pt-6">
+            <div class="flex flex-col items-center justify-between gap-3 text-[11px] text-white/70 md:flex-row md:text-xs">
+                <p>©  Xtrabuff. Alle Rechte vorbehalten.</p>
+                <div class="flex gap-4">
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">Impressum</a>
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">Datenschutz</a>
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">AGB</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

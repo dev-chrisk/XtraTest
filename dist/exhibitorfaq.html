@@ -1,0 +1,817 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhibitor FAQ – Xtrabuff Expo</title>
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: "Jackerton";
+            src: url("/fonts/Jackerton-Regular.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #2a1651;
+            color: #ffffff;
+            margin: 0;
+            opacity: 0;
+            animation: fadeInBody 0.6s ease-in-out forwards;
+        }
+
+        @keyframes fadeInBody {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .page-frame {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            background-color: #2a1651;
+        }
+
+        .page-inner {
+            flex: 2;
+            border-radius: 0;
+            background-color: #2a1651;
+            box-shadow: none;
+            padding: 16px 26px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: slideUpFadeIn 0.8s ease-out;
+        }
+
+        @keyframes slideUpFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .top-nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            gap: 36px;
+            font-size: 32px;
+            letter-spacing: 0.09em;
+            margin-left: 32px;
+        }
+
+        .top-nav a {
+            color: #ffdd4a;
+            text-transform: uppercase;
+            text-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+            font-size: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .top-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #ffdd4a;
+            transition: width 0.3s ease;
+        }
+
+        .top-nav a:hover {
+            color: #ffeb3b;
+            transform: translateY(-2px);
+            text-shadow: 0 5px 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 221, 74, 0.5);
+        }
+
+        .top-nav a:hover::after {
+            width: 100%;
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .top-right-panel {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background-color: #24123f;
+            transition: all 0.3s ease;
+        }
+
+        .top-right-panel:hover {
+            background-color: #2a1547;
+            box-shadow: 0 4px 12px rgba(36, 18, 63, 0.4);
+        }
+
+        .toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #2b233f;
+            border-radius: 999px;
+            padding: 4px 12px;
+            border: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .toggle-wrapper:hover {
+            background-color: #352a4f;
+            transform: scale(1.05);
+        }
+
+        .toggle-circle {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background-color: #c39bff;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-wrapper:hover .toggle-circle {
+            background-color: #d4b3ff;
+            transform: scale(1.1);
+        }
+
+        .toggle-wrapper span {
+            color: #ffdd4a;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .flag-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .flag {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background-color: #ffdd4a;
+            border: none;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .flag:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+        }
+
+        .flag-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 999px;
+            transition: transform 0.3s ease;
+        }
+
+        .flag:hover .flag-icon {
+            transform: scale(1.1);
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, rgba(116, 54, 217, 0.2) 0%, rgba(42, 22, 81, 0.4) 100%);
+            border: 1px solid rgba(116, 54, 217, 0.3);
+            border-radius: 16px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-card h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            background: linear-gradient(135deg, #00f496 0%, #7436d9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-card p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .content-section {
+            background: rgba(42, 22, 81, 0.3);
+            border: 1px solid rgba(116, 54, 217, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <script src="/js/app.js" defer></script>
+</head>
+<body>
+    <div class="page-frame">
+        <div class="page-inner">
+            
+<style>
+@font-face {
+    font-family: "Jackerton";
+    src: url("/fonts/Jackerton-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    margin-left: 8px;
+}
+
+.logo-pill a {
+    display: inline-flex;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    position: relative;
+    padding: 4px;
+    margin: -4px;
+    backface-visibility: hidden;
+    will-change: opacity;
+}
+
+.logo-pill a::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.logo-pill a:hover {
+    opacity: 0.9;
+}
+
+.logo-pill img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+.logo-pill a:hover img {
+    filter: brightness(1.1);
+}
+
+.top-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 36px;
+    font-size: 32px;
+    letter-spacing: 0.09em;
+    margin-left: 32px;
+    font-family: "Jackerton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.top-nav a {
+    color: #ffdd4a;
+    text-transform: uppercase;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    font-size: 32px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding: 4px 2px;
+    margin: -4px -2px;
+    backface-visibility: hidden;
+    will-change: color, text-shadow;
+}
+
+.top-nav a::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    right: -2px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.top-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffdd4a;
+    transition: width 0.3s ease;
+}
+
+.top-nav a:hover {
+    color: #ffeb3b;
+    text-shadow: 0 5px 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 221, 74, 0.5);
+}
+
+.top-nav a:hover::after {
+    width: 100%;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-right-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 10px;
+    border-radius: 999px;
+    background-color: #8b6fc7;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color, box-shadow;
+}
+
+.top-right-panel::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+}
+
+.top-right-panel:hover {
+    background-color: #9b7fd7;
+    box-shadow: 0 4px 12px rgba(139, 111, 199, 0.4);
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #2b233f;
+    border-radius: 999px;
+    padding: 4px 12px;
+    border: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color;
+}
+
+.toggle-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+}
+
+.toggle-wrapper:hover {
+    background-color: #352a4f;
+}
+
+.toggle-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background-color: #c39bff;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.toggle-wrapper:hover .toggle-circle {
+    background-color: #d4b3ff;
+}
+
+.toggle-wrapper span {
+    color: #ffdd4a;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-family: "Jackerton", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.flag-row {
+    display: flex;
+    gap: 6px;
+}
+
+.flag {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: box-shadow;
+}
+
+.flag::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+}
+
+.flag:hover {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.flag-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 999px;
+    transition: filter 0.3s ease;
+}
+
+.flag:hover .flag-icon {
+    filter: brightness(1.1);
+}
+
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    min-width: 220px;
+    background-color: rgba(42, 22, 81, 0.98);
+    border: 1px solid rgba(116, 54, 217, 0.4);
+    border-radius: 8px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    backface-visibility: hidden;
+    will-change: opacity, visibility;
+}
+
+.nav-item-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: none;
+    text-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    letter-spacing: normal;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: background-color, color;
+}
+
+.nav-dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.nav-dropdown-menu a:hover {
+    background-color: rgba(116, 54, 217, 0.2);
+    color: #00f496;
+}
+
+.nav-dropdown-link {
+    font-family: "Montserrat", sans-serif;
+}
+
+.tip-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background-color: #ff8f3c;
+    color: #2a1651;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+</style>
+
+<header class="top-bar">
+    <div class="logo-pill">
+        <a href="/">
+            <img src="/assets/Xtrabuff_XBE.png" alt="Xtrabuff XBE Logo">
+        </a>
+    </div>
+
+    <nav class="top-nav">
+        <!-- Home Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/" class="nav-link">Home</a>
+            <div class="nav-dropdown-menu">
+                <a href="/aboutus.html" class="nav-dropdown-link">About Us</a>
+                <a href="/whyus.html" class="nav-dropdown-link">Why Us? <span class="tip-badge">very hot</span></a>
+            </div>
+        </div>
+
+        <!-- Visitors Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/visitors.html" class="nav-link">Visitors</a>
+            <div class="nav-dropdown-menu">
+                <a href="/tickets.html" class="nav-dropdown-link">Tickets</a>
+                <a href="/travel.html" class="nav-dropdown-link">Travel & Accommodation</a>
+                <a href="/gamification.html" class="nav-dropdown-link">Gamified Experience <span class="tip-badge">hot</span></a>
+                <a href="/faq.html" class="nav-dropdown-link">FAQ</a>
+            </div>
+        </div>
+
+        <!-- Exhibitors Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/exhibitors.html" class="nav-link">Exhibitors</a>
+            <div class="nav-dropdown-menu">
+                <a href="/whyexhibit.html" class="nav-dropdown-link">Why Exhibit?</a>
+                <a href="/booths.html" class="nav-dropdown-link">Booth Packages</a>
+                <a href="/exibitorprocess.html" class="nav-dropdown-link">Application Process <span class="tip-badge">hot</span></a>
+                <a href="/exhibitorfaq.html" class="nav-dropdown-link">Exhibitor FAQ</a>
+            </div>
+        </div>
+
+        <!-- Program Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/program.html" class="nav-link">Program</a>
+            <div class="nav-dropdown-menu">
+                <a href="/schedule.html" class="nav-dropdown-link">Schedule Overview</a>
+                <a href="/workshops.html" class="nav-dropdown-link">Panels & Workshops</a>
+                <a href="/pitchs.html" class="nav-dropdown-link">Pitch Events</a>
+                <a href="/awards.html" class="nav-dropdown-link">Awards</a>
+                <a href="/party.html" class="nav-dropdown-link">Afterparty</a>
+            </div>
+        </div>
+
+        <!-- Partners Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="/partners.html" class="nav-link">Partners</a>
+            <div class="nav-dropdown-menu">
+                <a href="/howtosponsorship.html" class="nav-dropdown-link">Sponsorship Opportunities <span class="tip-badge">hot</span></a>
+                <a href="/partnershippackages.html" class="nav-dropdown-link">Partnership Packages</a>
+                <a href="/govnmore.html" class="nav-dropdown-link">Government & Associations</a>
+                <a href="/press.html" class="nav-dropdown-link">Press & Media</a>
+            </div>
+        </div>
+
+        <!-- More Dropdown -->
+        <div class="nav-item-dropdown">
+            <a href="#" class="nav-link">More</a>
+            <div class="nav-dropdown-menu">
+                <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="nav-dropdown-link">Discord <span class="tip-badge">hot</span></a>
+                <a href="/updates.html" class="nav-dropdown-link">News & Updates</a>
+                <a href="/contact.html" class="nav-dropdown-link">Contact</a>
+                <a href="/legal.html" class="nav-dropdown-link">Imprint / Legal</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="top-right">
+        <div class="top-right-panel">
+            <div class="toggle-wrapper">
+                <div class="toggle-circle"></div>
+                <span>Dark Mode</span>
+            </div>
+            <div class="flag-row">
+                <div class="flag">
+                    <img src="/assets/german-icon.png" alt="Deutsch" class="flag-icon">
+                </div>
+                <div class="flag">
+                    <img src="/assets/english-icon.png" alt="English" class="flag-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+            <main>
+                <div class="hero-card">
+                    <h1>Exhibitor FAQ</h1>
+                    <p>Content kommt später...</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Aussteller FAQ</h2>
+                    <p>Hier kommt der Content...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+<footer class="border-t border-purple-neon/30 bg-purple-dark/80">
+    <div class="mx-auto max-w-6xl px-3 py-8 md:px-4 md:py-12">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <!-- About Section -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Über Xtrabuff</h3>
+                <p class="text-xs text-white/70 md:text-sm">
+                    Die größte Gaming- und Tech-Expo in Deutschland. Verbinde dich mit der Community, entdecke Innovationen und erlebe die Zukunft des Gamings.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Quick Links</h3>
+                <ul class="space-y-2 text-xs md:text-sm">
+                    <li>
+                        <a href="/" class="text-white/70 transition-colors hover:text-cyan-neon">Home</a>
+                    </li>
+                    <li>
+                        <a href="/updates.html" class="text-white/70 transition-colors hover:text-cyan-neon">Updates</a>
+                    </li>
+                    <li>
+                        <a href="/tickets.html" class="text-white/70 transition-colors hover:text-cyan-neon">Tickets</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus.html" class="text-white/70 transition-colors hover:text-cyan-neon">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/partners.html" class="text-white/70 transition-colors hover:text-cyan-neon">Partners</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Resources</h3>
+                <ul class="space-y-2 text-xs md:text-sm">
+                    <li>
+                        <a href="/exhibitors.html" class="text-white/70 transition-colors hover:text-cyan-neon">Exhibitors</a>
+                    </li>
+                    <li>
+                        <a href="/legal.html" class="text-white/70 transition-colors hover:text-cyan-neon">Legal / Imprint</a>
+                    </li>
+                    <li>
+                        <a href="/faq.html" class="text-white/70 transition-colors hover:text-cyan-neon">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="/contact.html" class="text-white/70 transition-colors hover:text-cyan-neon">Contact</a>
+                    </li>
+                    <li>
+                        <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="text-white/70 transition-colors hover:text-cyan-neon">Discord</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Media & Contact -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold text-cyan-neon">Connect</h3>
+                <div class="flex gap-3">
+                    <a href="https://discord.gg/4uecJ5Hn6b" target="_blank" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Discord">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Twitter">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="flex h-10 w-10 items-center justify-center rounded-lg border border-purple-neon/40 bg-purple-dark/60 text-cyan-neon transition-all hover:border-cyan-neon hover:bg-purple-neon/20" aria-label="Instagram">
+                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-xs text-white/60">
+                    Folge uns für die neuesten Updates und News!
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-8 border-t border-purple-neon/20 pt-6">
+            <div class="flex flex-col items-center justify-between gap-3 text-[11px] text-white/70 md:flex-row md:text-xs">
+                <p>©  Xtrabuff. Alle Rechte vorbehalten.</p>
+                <div class="flex gap-4">
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">Impressum</a>
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">Datenschutz</a>
+                    <a href="/legal.html" class="transition-colors hover:text-cyan-neon">AGB</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
