@@ -1,4 +1,98 @@
+$sponsors = [
+    1 => [
+        'name' => 'TechCorp Gaming',
+        'description' => 'Führender Hardware-Partner für Gaming-Peripherie und High-End-Geräte. Unterstützt die Expo mit Premium-Ausrüstung und innovativen Gaming-Lösungen.',
+        'long_description' => 'TechCorp Gaming ist seit über 15 Jahren ein Pionier in der Gaming-Hardware-Industrie. Mit über 500 Mitarbeitern weltweit entwickeln wir innovative Lösungen für Gamer, Content Creator und Profis. Unsere Produkte werden von Millionen von Gamern auf der ganzen Welt verwendet und haben zahlreiche Auszeichnungen erhalten.',
+        'logo' => '/assets/Xtrabuff_XBE.png',
+        'hero_image' => '/assets/xtrabuff-expo-big-banner2.png',
+        'website' => 'https://example.com',
+        'contact' => 'contact@techcorp-gaming.com',
+        'tier' => 1,
+        'founded' => '2008',
+        'employees' => '500+',
+        'location' => 'München, Deutschland',
+        'features' => [
+            'Premium Gaming-Peripherie für alle Expo-Bereiche',
+            'Exklusive Hardware-Demos und Hands-On Sessions',
+            'Gaming-Tournament-Sponsoring',
+            'VIP-Lounge mit High-End-Setups',
+            'Early Access zu neuen Produkten'
+        ],
+        'social_media' => [
+            'twitter' => 'https://twitter.com/techcorpgaming',
+            'instagram' => 'https://instagram.com/techcorpgaming',
+            'youtube' => 'https://youtube.com/techcorpgaming'
+        ]
+    ],
+    2 => [
+        'name' => 'StreamPlatform Pro',
+        'description' => 'Premium Streaming-Services und Content-Creation-Tools für Creator. Bietet professionelle Lösungen für Streamer und Content-Ersteller.',
+        'long_description' => 'StreamPlatform Pro ist die führende Plattform für Content Creator und Streamer. Mit über 2 Millionen aktiven Nutzern bieten wir professionelle Tools für Streaming, Video-Editierung und Community-Management. Unsere Mission ist es, jedem Creator die Tools zu geben, die er braucht, um erfolgreich zu sein.',
+        'logo' => '/assets/Xtrabuff_XBE.png',
+        'hero_image' => '/assets/xtrabuff_background.png',
+        'website' => 'https://example.com',
+        'contact' => 'info@streamplatform-pro.com',
+        'tier' => 1,
+        'founded' => '2015',
+        'employees' => '200+',
+        'location' => 'Berlin, Deutschland',
+        'features' => [
+            'Live-Streaming-Workshops für Creator',
+            'Exklusive Software-Lizenzen für Teilnehmer',
+            'Creator-Networking-Events',
+            'Bühnen-Präsentationen zu Content-Creation',
+            'Mentoring-Programme mit Top-Creators'
+        ],
+        'social_media' => [
+            'twitter' => 'https://twitter.com/streamplatform',
+            'instagram' => 'https://instagram.com/streamplatform',
+            'youtube' => 'https://youtube.com/streamplatform'
+        ]
+    ],
+    3 => [
+        'name' => 'GameDev Studios',
+        'description' => 'Indie-Game-Entwickler und Publisher mit innovativen Spielkonzepten. Präsentiert unreleased Games und exklusive Demos auf der Expo.',
+        'long_description' => 'GameDev Studios ist ein unabhängiges Entwicklerstudio, das sich auf innovative und künstlerisch anspruchsvolle Spiele spezialisiert hat. Seit unserer Gründung haben wir über 20 preisgekrönte Titel veröffentlicht und arbeiten mit talentierten Entwicklern aus der ganzen Welt zusammen. Wir glauben an die Kraft von Indie-Games, die Gaming-Landschaft zu prägen.',
+        'logo' => '/assets/Xtrabuff_XBE.png',
+        'hero_image' => '/assets/xtrabuff-expo-big-banner2.png',
+        'website' => 'https://example.com',
+        'contact' => 'hello@gamedev-studios.com',
+        'tier' => 1,
+        'founded' => '2012',
+        'employees' => '50+',
+        'location' => 'Hamburg, Deutschland',
+        'features' => [
+            'Exklusive Game-Demos vor Release',
+            'Developer-Talks und Q&A Sessions',
+            'Indie-Game-Showcase Bereich',
+            'Game-Jam-Sponsoring',
+            'Meet & Greet mit Entwicklern'
+        ],
+        'social_media' => [
+            'twitter' => 'https://twitter.com/gamedevstudios',
+            'instagram' => 'https://instagram.com/gamedevstudios',
+            'youtube' => 'https://youtube.com/gamedevstudios'
+        ]
+    ],
+];
 
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 1;
+$sponsor = $sponsors[$id] ?? [
+    'name' => 'Unbekannter Sponsor',
+    'description' => 'Keine Informationen verfügbar.',
+    'long_description' => 'Keine detaillierten Informationen verfügbar.',
+    'logo' => '/assets/Xtrabuff_XBE.png',
+    'hero_image' => '/assets/xtrabuff-expo-big-banner2.png',
+    'website' => '#',
+    'contact' => '',
+    'tier' => 2,
+    'founded' => 'N/A',
+    'employees' => 'N/A',
+    'location' => 'N/A',
+    'features' => [],
+    'social_media' => []
+];
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
